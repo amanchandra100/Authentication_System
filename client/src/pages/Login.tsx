@@ -59,7 +59,7 @@ const LoginForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/login`, user );
+      const res = await axios.post(`/api/v1/auth/login`, user );
       if (res && res.data.success) {
         toast.success(res.data.message);
         setAuth({
