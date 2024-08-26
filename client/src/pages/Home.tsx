@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <>
      <Toaster position="bottom-center" reverseOrder={false} />
-    <div  className="home">
+    <div  className="nav">
       <div className="logo-div">
 
       <h2>Wellcome to home</h2>
@@ -37,6 +37,15 @@ const Home = () => {
       </div>
     
     </div>
+
+    <div className='details-div'>
+        <div className="details">
+        <h1>See User Details in  Profile</h1>
+
+        <br/>
+       
+        </div>
+      </div>  
     
     </>
   )

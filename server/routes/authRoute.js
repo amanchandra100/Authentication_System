@@ -3,7 +3,6 @@ import {
   forgotPasswordController,
   loginController,
   registerController,
-  updateProfileController,
 } from "../controllers/authController.js";
 import { requireSignIn } from "../middlewares/authMiddleware.js";
 
@@ -37,8 +36,7 @@ router.get("/user-auth", requireSignIn, (req, res) => {
   res.status(200).send({ ok: true });
 });
 
-//update profile
-router.put("/profile", requireSignIn, updateProfileController);
+
 
 
 

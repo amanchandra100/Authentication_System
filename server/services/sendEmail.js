@@ -22,7 +22,7 @@ const sendEmail = expressAsyncHandler(async (req, res) => {
 
   try {
     const { email } = req.body;
-    const userData = await userModel.findOne({email})
+    const userData = await userModel.findOne({email:email})
     console.log(email);
     if (!userData) {
       return res.status(400).json({
@@ -30,12 +30,6 @@ const sendEmail = expressAsyncHandler(async (req, res) => {
         message: "Email Not Register"
       })
     } 
-    // if (userData.verified == 1){
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: userData.email+ "  mail is already verified!"
-    //   })
-    // }
   
   const g_otp = generateOTP();
   console.log(g_otp)

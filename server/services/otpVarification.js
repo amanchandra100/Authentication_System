@@ -6,7 +6,7 @@ const verifyOtp = async(req,res) => {
     try {
 
         const { email, otp } = req.body
-        console.log(email)
+        // console.log(email)
 
         const userData = await userModel.findOne({
             email:email
@@ -54,7 +54,7 @@ const verifyOtp = async(req,res) => {
         console.log("erroor")
         return res.status(400).json({
             success: false,
-            message: error.message
+            message: "OTP is not Correct"
         })
     }
 }
