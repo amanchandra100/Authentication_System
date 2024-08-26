@@ -160,7 +160,7 @@ export const forgotPasswordController = async (req, res) => {
             console.log("Your Otp Has been Expired")
             return res.status(400).json({
                 success: false,
-                message: "Your Otp Has been Expired"
+                message: "Your Otp or session Time out Has been Expired"
             })
         }
     

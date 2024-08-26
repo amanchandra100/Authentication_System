@@ -253,6 +253,29 @@ input::placeholder{
 }
 
 
+
+
+/* forget pass css */
+
+.container2 {
+    background-color: var(--whiteColor);
+    padding: 15rem 3.5rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 35rem;
+    height: 40rem;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    border: 1px solid #ddd;
+}
+
+
+
+
+
+
 /* media qury------------------------------------ */
 
 @media screen and (max-width: 750px) {

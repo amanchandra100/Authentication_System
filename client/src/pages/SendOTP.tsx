@@ -62,7 +62,7 @@ const SendOTP = () => {
           token: "",
         });
         localStorage.removeItem("auth");
-        navigate("/login");
+        email1? navigate("/login",{state:{email:email}}):navigate("/forget-password",{state:{email:email,otp:otp}})
       } else {
         toast.error(res.data.message);
       }
