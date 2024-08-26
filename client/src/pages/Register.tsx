@@ -93,7 +93,7 @@ const RegisterForm: React.FC = () => {
     }
     user["contactMode"] = contactOption;
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/register`, user);
+      const res = await axios.post(`/api/v1/auth/register`, user);
       if (res && res.data.success) {
         toast.success(res.data.message);
         navigate('/send-otp',{state:{email:user.email}});

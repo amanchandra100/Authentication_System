@@ -32,7 +32,7 @@ const SendOTP = () => {
   const SendOTP = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/send-otp`, {email});
+      const res = await axios.post(`/api/v1/auth/send-otp`, {email});
       if (res && res.data.success) {
         toast.success(res.data.message);
         setOtpSent(true);
@@ -50,7 +50,7 @@ const SendOTP = () => {
   const VerifyOTP = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/otp-verification`, {
+      const res = await axios.post(`/api/v1/auth/otp-verification`, {
         email,
         otp
       });
