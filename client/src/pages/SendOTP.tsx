@@ -13,9 +13,14 @@ const SendOTP = () => {
 
   const [auth, setAuth] = useAuth();
 
-  const email1 = location.state.email;
+  // const [isDisabled, setIsDisabled] = useState(false);
+
+  const email1 = location?.state?.email;
+
   
-  const [email, seteEmail] = useState(email1);
+
+  const [email, setEmail] = useState(email1);
+
   const [otp, setOtp] = useState("");
   const [otpSent, setOtpSent] = useState(false);
 
@@ -97,9 +102,10 @@ const SendOTP = () => {
                   id="email"
                   name="email"
                   value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email"
                   required 
-                  disabled
+                  disabled={email1? true : false}
                   />
               </div>
               {otpSent === true ? (

@@ -128,7 +128,7 @@ const LoginForm: React.FC = () => {
         <Link to={"/"}><button className="button1" >Sign Up</button></Link>
       </form>
       <br/>
-      <Link to={"/forget-password"}><h2 className="h2">Forget Password <span>?</span></h2></Link>
+      <Link to={"/send-otp"}><h2 className="h2">Forget Password <span>?</span></h2></Link>
     </div>
     </div>
     
