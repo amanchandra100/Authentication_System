@@ -1,10 +1,44 @@
 import React from 'react'
+import { useAuth } from '../context/auth';
+import toast, { Toaster } from "react-hot-toast";
+import { Link, useNavigate } from 'react-router-dom';
+import "../styles/home.css"
 
 const Home = () => {
+
+  const [auth, setAuth] = useAuth();
+  const navigate= useNavigate()
+
+   // Handaje log out
+   const handlelogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    toast.success("Logout Successfully");
+    navigate('/login')
+
+    
+  };
+
   return (
-    <div>
-      Wellcome
+    <>
+     <Toaster position="bottom-center" reverseOrder={false} />
+    <div  className="home">
+      <div className="logo-div">
+
+      <h2>Wellcome to home</h2>
+      </div>
+      <div className="btns">
+      <button className="btn-out" onClick={handlelogout} type="submit">Sign Out</button>
+      <Link to={"/profile"}><button className="btn-out">Profile</button></Link>
+      </div>
+    
     </div>
+    
+    </>
   )
 }
 

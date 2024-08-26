@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/register.css"
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 // import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 
 interface User {
@@ -14,13 +15,16 @@ interface User {
 }
 
 const RegisterForm: React.FC = () => {
+
   const [type, setType] = useState("password");
+  const [type1, setType1] = useState("password");
   const [icon, setIcon] = useState("/Resources/hide.png");
   const [icon1, setIcon1] = useState("/Resources/hide.png");
-  const [icon2, setIcon2] = useState("/Resources/hide.png");
+  // const [showAlert, setShowAlert] = useState(false);
   const [contactOption, setContactOption] = useState("");
   const [show, setShow] = useState(false);
-  
+  const navigate =  useNavigate();
+
 
   const [user, setUser] = useState<User>({
     firstName: "",
@@ -42,12 +46,12 @@ const RegisterForm: React.FC = () => {
     }
   }
   const togglePasswordVisibility1 = (): void => {
-    if (type === "password") {
+    if (type1 === "password") {
       setIcon1("/Resources/eye.png"); 
-      setType("text"); 
+      setType1("text"); 
     } else {
       setIcon1("/Resources/hide.png"); 
-      setType("password"); 
+      setType1("password"); 
     }
   }
   const toggleDropDown = (): void => {
@@ -67,16 +71,47 @@ const RegisterForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+
+    
+ 
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (user.password !== user.confirmPassword) {
+      toast.error("Confirm Passward not match");
+      return
+      
+    }
+    if (contactOption !== "Email"  && contactOption !== "Phone") {
+
+      toast.error("Contact Mode required");
+      return
+      
+    }
     user["contactMode"] = contactOption;
-    console.log("User Data:", user);
-    console.log("User Data:",  contactOption);
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/register`, user);
+      if (res && res.data.success) {
+        toast.success(res.data.message);
+        navigate('/send-otp',{state:{email:user.email}});
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+    
+
+  
   };
 
   return (
     <>
-    
+    <Toaster position="bottom-center" reverseOrder={false} />
    
     <main className="main">
 
@@ -130,10 +165,11 @@ const RegisterForm: React.FC = () => {
 
         <div className="form-group">
           <input
-            type={type}
+            // style={{border:`${showAlert === true ? "2px solid red":""}`}}
+            type={type1}
             id="confirm-password"
             name="confirmPassword"
-            value={user.confirmPassword}
+            // value={user.confirmPassword}
             onChange={handleChange}
             placeholder="Retype Password"
             required
@@ -153,6 +189,7 @@ const RegisterForm: React.FC = () => {
 
             placeholder="Contact Mode"
             disabled
+            required
           />
           <span className="password-icon" onClick={toggleDropDown}>
           <img className="hideimg" src="/Resources/down.png" alt= "logo" />
@@ -184,7 +221,7 @@ const RegisterForm: React.FC = () => {
            name="email"
            value={user.email}
            onChange={handleChange}
-           placeholder="Email"
+           placeholder="Enter Email"
            required />
         </div>
         <br/>

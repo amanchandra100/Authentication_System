@@ -1,31 +1,30 @@
 import React, { useState } from "react";
 import "../styles/login.css"
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { useAuth } from "../context/auth";
 // import FontAwesomeIcon from "@fortawesome/react-fontawesome"
 
 interface User {
-  firstName: string;
-  lastName: string;
-  password: string;
-  confirmPassword: string;
-  contactMode: string;
   email: string;
+  password: string;
 }
 
 const LoginForm: React.FC = () => {
   const [user, setUser] = useState<User>({
-    firstName: "",
-    lastName: "",
-    password: "",
-    confirmPassword: "",
-    contactMode: "",
     email: "",
+    password: "",
   });
 
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState("/Resources/hide.png"); 
+
+  const [auth, setAuth] = useAuth();
+
+  const location = useLocation();
+  const navigate =  useNavigate();
 
 
 
@@ -38,24 +37,16 @@ const LoginForm: React.FC = () => {
       setType("password"); 
     }
   }
-  const togglePasswordVisibility1 = (): void => {
-    if (type === "password") {
-      setIcon("/Resources/eye.png"); 
-      setType("text"); 
-    } else {
-      setIcon("/Resources/hide.png"); 
-      setType("password"); 
-    }
-  }
-  const toggleDropDown = (): void => {
-    if (type === "password") {
-      setIcon("<i class='fas fa-eye-slash'></i>"); 
-      setType("text"); 
-    } else {
-      setIcon("<i class='fas fa-eye'></i>"); 
-      setType("password"); 
-    }
-  }
+
+  // const toggleDropDown = (): void => {
+  //   if (type === "password") {
+  //     setIcon("<i class='fas fa-eye-slash'></i>"); 
+  //     setType("text"); 
+  //   } else {
+  //     setIcon("<i class='fas fa-eye'></i>"); 
+  //     setType("password"); 
+  //   }
+  // }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -65,15 +56,33 @@ const LoginForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("User Data:", user);
+    try {
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/login`, user );
+      if (res && res.data.success) {
+        toast.success(res.data.message);
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate("/home");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      // console.log(error);
+      toast.error(error.response.data.message);
+      // toast.error("Something went wrong");
+    }
   };
 
   return (
     <>
     
-   
+    <Toaster position="bottom-center" reverseOrder={false} />
     <main className="main">
 
       <div className="left">
@@ -83,7 +92,7 @@ const LoginForm: React.FC = () => {
     <div className="right">
       <div className="container1">
       
-      <div className="heading"><h1 className="h1">Fill what we know <span> !</span> </h1> <Link to={"/signIn"}><h2 className="h2"><span></span></h2></Link></div>
+      <div className="heading"><h1 className="h1">Fill what we know <span> !</span> </h1> </div>
       <form onSubmit={handleSubmit}>
   
         <div className="form-group">
@@ -116,8 +125,10 @@ const LoginForm: React.FC = () => {
         <button className="button" type="submit">Sign In</button>
         <br/>
         <br/>
-        <Link to={"/"}><button className="button1" type="submit">Sign Up</button></Link>
+        <Link to={"/"}><button className="button1" >Sign Up</button></Link>
       </form>
+      <br/>
+      <Link to={"/forget-password"}><h2 className="h2">Forget Password <span>?</span></h2></Link>
     </div>
     </div>
     
