@@ -296,7 +296,7 @@ input::placeholder{
     .main{
         flex-direction: column;
         height: auto;
-        padding: 2rem 0rem;
+        padding: 1rem 0rem;
     }
 
     .left{
@@ -309,7 +309,7 @@ input::placeholder{
         /* padding: 0%; */
     }
 
-    .bgimg {
+    .bgimg1 {
         width: 100%;
         height: 20rem;
     }
