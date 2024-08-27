@@ -113,7 +113,7 @@ const RegisterForm: React.FC = () => {
     <>
     <Toaster position="bottom-center" reverseOrder={false} />
    
-    <main className="main">
+    <main className="main1">
 
       <div className="left">
         <img className="bgimg" src="/Resources/SignUp.png" alt="Logo" />
