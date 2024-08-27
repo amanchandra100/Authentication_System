@@ -86,7 +86,7 @@ const LoginForm: React.FC = () => {
     <main className="main">
 
       <div className="left">
-        <img className="bgimg" src="/Resources/SignIn.png" alt="Logo" />
+        <img className="bgimg1" src="/Resources/SignIn1.png" alt="Logo" />
       </div>
 
     <div className="right">
