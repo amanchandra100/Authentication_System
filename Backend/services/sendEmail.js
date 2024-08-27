@@ -41,7 +41,7 @@ const sendEmail = expressAsyncHandler(async (req, res) => {
     if (!sendNextOtp) {
       return res.status(400).json({
         success:false,
-        message:"Please try after 1 minute"
+        message:"Email Already Sent Check your Email Or Try after 1 minute"
       })
     }
   }
