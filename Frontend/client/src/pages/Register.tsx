@@ -23,6 +23,7 @@ const RegisterForm: React.FC = () => {
   // const [showAlert, setShowAlert] = useState(false);
   const [contactOption, setContactOption] = useState("");
   const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate =  useNavigate();
 
 
@@ -79,28 +80,33 @@ const RegisterForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setIsLoading(true)
     if (user.password !== user.confirmPassword) {
       toast.error("Confirm Passward not match");
+      setIsLoading(false)
       return
-      
     }
+    setIsLoading(true)
     if (contactOption !== "Email"  && contactOption !== "Phone") {
 
       toast.error("Contact Mode required");
+      setIsLoading(false)
       return
-      
     }
+    setIsLoading(true)
     user["contactMode"] = contactOption;
     try {
       const res = await axios.post(`/api/v1/auth/register`, user);
       if (res && res.data.success) {
         toast.success(res.data.message);
+        setIsLoading(false)
         navigate('/send-otp',{state:{email:user.email}});
       } else {
+        setIsLoading(false)
         toast.error(res.data.message);
       }
     } catch (error) {
+      setIsLoading(false)
       console.log(error);
       toast.error("Something went wrong");
     }
@@ -225,7 +231,7 @@ const RegisterForm: React.FC = () => {
            required />
         </div>
         <br/>
-        <button className="button" type="submit">Sign Up</button>
+        <button className="button" type="submit">{isLoading === true ? ("Loading..."):("Sign Up")}</button>
       </form>
     </div>
     </div>

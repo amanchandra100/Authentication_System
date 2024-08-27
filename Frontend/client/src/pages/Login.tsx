@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "../context/auth";
-// import FontAwesomeIcon from "@fortawesome/react-fontawesome"
+
 
 interface User {
   email: string;
@@ -18,6 +18,7 @@ const LoginForm: React.FC = () => {
     password: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState("/Resources/hide.png"); 
 
@@ -58,6 +59,7 @@ const LoginForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true)
     try {
       const res = await axios.post(`/api/v1/auth/login`, user );
       if (res && res.data.success) {
@@ -68,12 +70,15 @@ const LoginForm: React.FC = () => {
           token: res.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
+        setIsLoading(false)
         navigate("/home");
       } else {
+        setIsLoading(false)
         toast.error(res.data.message);
       }
     } catch (error) {
       // console.log(error);
+      setIsLoading(false)
       toast.error(error.response.data.message);
       // toast.error("Something went wrong");
     }
@@ -122,7 +127,7 @@ const LoginForm: React.FC = () => {
         </div>
 
         <br/>
-        <button className="button" type="submit">Sign In</button>
+        <button className="button" type="submit">{isLoading === true ? ("Loading..."):("Sign in")}</button>
         <br/>
         <br/>
         <Link to={"/"}><button className="button1" >Sign Up</button></Link>

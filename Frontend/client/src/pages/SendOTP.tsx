@@ -8,6 +8,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const SendOTP = () => {
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const location = useLocation()
   const navigate = useNavigate();
 
@@ -31,15 +33,19 @@ const SendOTP = () => {
   // form function
   const SendOTP = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const res = await axios.post(`/api/v1/auth/send-otp`, {email});
       if (res && res.data.success) {
         toast.success(res.data.message);
         setOtpSent(true);
+        setIsLoading(false);
       } else {
+        setIsLoading(false);
         toast.error(res.data.message);
       }
     } catch (error) {
+      setIsLoading(false);
       // console.log(error);
       toast.error(error.response.data.message);
     }
@@ -49,6 +55,7 @@ const SendOTP = () => {
   // form function
   const VerifyOTP = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const res = await axios.post(`/api/v1/auth/otp-verification`, {
         email,
@@ -62,11 +69,14 @@ const SendOTP = () => {
           token: "",
         });
         localStorage.removeItem("auth");
+        setIsLoading(false);
         email1? navigate("/login",{state:{email:email}}):navigate("/forget-password",{state:{email:email,otp:otp}})
       } else {
+        setIsLoading(false);
         toast.error(res.data.message);
       }
     } catch (error) {
+      setIsLoading(false);
       // console.log(error.response.data.message);
       toast.error(error.response.data.message);
     }
@@ -125,7 +135,7 @@ const SendOTP = () => {
 
 
               <br />
-              <button className="button" type="submit">{otpSent === true ? ("Verify") : ("Send OTP")}</button>
+              <button className="button" type="submit">{otpSent === true ? (`${isLoading === true ? ("Verifing..."):("Verify")}`) : (`${isLoading === true ? ("Sending..."):("Send OTP")}`)}</button>
             </form>
           </div>
         </div>
