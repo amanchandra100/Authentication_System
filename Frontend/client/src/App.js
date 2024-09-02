@@ -40,18 +40,22 @@ const appRouter = createBrowserRouter([
         path: "/forget-password", 
         element: <ForgetPassword /> 
       },
+      
+      
       {
         element:<PrivateRoute/>,
         children:[
-          { 
+         { 
             path: "/home", 
-            element: <Home /> },
+            element: <Home /> 
+          },
           { 
             path: "/profile", 
             element: <Profile /> 
           },
         ]
       },
+      
       { 
         path: "*", 
         element: <NotFound /> 

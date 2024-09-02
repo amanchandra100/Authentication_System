@@ -60,7 +60,7 @@ const sendEmail = expressAsyncHandler(async (req, res) => {
     from: process.env.SMTP_MAIL,
     to: email,
     subject: "OTP for verification ",
-    text: `Hii ${userData.name} Your OTP is: ${g_otp}`,
+    text: `Hii ${userData.firstName + userData.lastName} Your OTP is: ${g_otp}`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
