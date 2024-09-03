@@ -36,7 +36,7 @@ const Navbar = () => {
     <nav  className="nav">
     <div className="logo-div">
 
-    <h2>{auth?.user?(`Wellcome to ${path ==="/profile" ?("Profile"):("Home")}`):("Wellcome")}</h2>
+    <h2>{auth?.user?(`Wellcome to ${path ==="/profile" ?("Profile"):("Home")}`):("LOGO")}</h2>
     </div>
     <div className="btns">
     {auth?.user? ( 
