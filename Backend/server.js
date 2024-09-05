@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
+import viewsRoutes from "./routes/viewsRoutes.js";
 import cors from "cors";
 import path from 'path';
 import { fileURLToPath} from 'url';
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, '../Frontend/client/build')));
 
 //routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/", viewsRoutes);
 
 //rest api
 app.get("*", (req, res) => {

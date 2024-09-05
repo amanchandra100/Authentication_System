@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth } from '../../context/auth';
-import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import "../../styles/home.css"
 import toast from 'react-hot-toast';
 

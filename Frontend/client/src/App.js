@@ -10,6 +10,7 @@ import Profile from "./pages/Profile.tsx";
 import PrivateRoute from "./components/Routes/Private.tsx";
 import Navbar from "./components/Navbar/Navbar.tsx";
 import { Toaster } from "react-hot-toast";
+import View from "./components/viewCount/View.js";
 
 const Applayout = () => {
   return (
@@ -17,6 +18,7 @@ const Applayout = () => {
       <Toaster position="bottom-center" reverseOrder={false} />
       <Navbar/>
       <Outlet />
+      <View/>
     </>
   );
 };
