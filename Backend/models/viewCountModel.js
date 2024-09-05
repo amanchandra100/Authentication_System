@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const viewsSchema = new mongoose.Schema(
   {
+    siteName: {
+      type: String,
+      required: true,
+      default:"SiteName",
+    },
     views: {
       type: Number,
       required: true,

@@ -6,8 +6,10 @@ export const viewsCountController = async (req, res) => {
     try {
       
         await connectDB()
-        const _id='66d9772bbb02e636f1373b30'
-        // await  viewCountModel.create({ views: 1 })
+        // const _id='66d9846569b4a99f90c84054'
+        // await  viewCountModel.create({siteName:"AmanPortfolio", views: 1 })
+
+        var _id = req.params.Id;
 
         const oldCount = await viewCountModel.findById(_id).select('views')
         const newCount = oldCount.views + 1
@@ -17,7 +19,7 @@ export const viewsCountController = async (req, res) => {
           })
         if (updatedCount){
           return  res.status(200).send({
-            data:updatedCount.views,
+            count:updatedCount.views,
             success: true,
             message: "View Count increasesd",
           });

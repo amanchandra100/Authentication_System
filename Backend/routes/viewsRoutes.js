@@ -6,7 +6,7 @@ import { viewsCountController } from "../controllers/viewsController.js";
 const router = express.Router();
 
 
-router.get("/viewsCount", viewsCountController);
+router.get("/viewsCount/:Id", viewsCountController);
 
 
 

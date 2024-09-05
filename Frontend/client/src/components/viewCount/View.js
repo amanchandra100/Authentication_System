@@ -8,10 +8,11 @@ const View = () => {
  
 
   useEffect(() => { 
+    const _id='66d9846569b4a99f90c84054'
     const fetchCount = async () => {
-    const res = await fetch(`/api/v1/viewsCount`)
+    const res = await fetch(`/api/v1/viewsCount/${_id}`)
     .then((res) => res.json());
-    setViews(res.data);
+    setViews(res.count);
     };
     fetchCount();
   }, []);
