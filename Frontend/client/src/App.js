@@ -11,6 +11,7 @@ import PrivateRoute from "./components/Routes/Private.tsx";
 import Navbar from "./components/Navbar/Navbar.tsx";
 import { Toaster } from "react-hot-toast";
 import View from "./components/viewCount/View.js";
+import Footer from "./components/Footer/Footer.tsx";
 
 const Applayout = () => {
   return (
@@ -19,6 +20,7 @@ const Applayout = () => {
       <Navbar/>
       <Outlet />
       <View/>
+      <Footer/>
     </>
   );
 };

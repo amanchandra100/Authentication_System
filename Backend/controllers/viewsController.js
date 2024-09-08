@@ -6,8 +6,8 @@ export const viewsCountController = async (req, res) => {
     try {
       
         await connectDB()
-        // const _id='66d9846569b4a99f90c84054'
-        // await  viewCountModel.create({siteName:"AmanPortfolio", views: 1 })
+     
+        // await  viewCountModel.create({siteName:"A", views: 1 })
 
         var _id = req.params.Id;
 
