@@ -1,4 +1,4 @@
-## Task Completed ✅
+# Authentication System
 #### 👉 In this Website user can Register with OTP Varification and Login with their credentials.
 #### 👉 And when a user log in with their credentials they'll stay logged in for up to 7 days unless they manually log out.
 #### 👉 And user can Reset their Password with OTP Varification.
