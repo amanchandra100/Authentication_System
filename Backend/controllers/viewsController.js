@@ -5,7 +5,7 @@ export const viewsCountController = async (req, res) => {
 
     try {
       
-        await connectDB()
+        // await connectDB()
      
         // await  viewCountModel.create({siteName:"A", views: 1 })
 
