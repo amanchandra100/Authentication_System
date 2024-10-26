@@ -19,12 +19,16 @@ const View = () => {
 
   return (
     <div>
-      <div className="end1">
+      <div className="viewDiv">
+      <a title="Add views count in your Website" target="main" className="viewLink1" href="https://viewapi.vercel.app">
+      <div className="countDiv">
         <h4 className="viewhead">
           This Page Was Viewed
           <span>👁️{views}</span>
           Times
         </h4>
+      </div>  
+      </a>
       </div>
     </div>
   );

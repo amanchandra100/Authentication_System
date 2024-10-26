@@ -50,6 +50,8 @@ function decrease() {
 
   return (
     <>
+    <h2>This is Demo Home Page Which is protected by Authentication means you can't access this page without login</h2>
+
     <div className="photo-div">
       <img className='imges' src={images[counter]} alt=""  />
     </div>
