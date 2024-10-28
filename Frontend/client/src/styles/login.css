@@ -276,6 +276,87 @@ input::placeholder{
 
 
 
+
+
+
+/* media qury------------------------------------ */
+
+@media screen and (max-width: 1300px) {
+
+    body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 100vw;
+    
+    
+    }
+    
+
+
+    .main{
+        /* flex-direction: column; */
+        height: auto;
+        padding: 1rem 0rem;
+    }
+
+    .left{
+        width: 90%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      
+        /* padding: 0%; */
+    }
+
+    .bgimg1 {
+        width: 100%;
+        height: 35rem;
+    }
+
+    .right {
+        width: 90%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container1{
+        padding: 1.5rem 1.5rem;
+        height: fit-content;
+    }
+
+    .form-group {
+        margin-bottom: 30px;
+    }
+    
+
+    .h1 {
+        text-align: center;
+        color: var(--purpleColor);
+        font-size: 1.8rem;
+        font-weight: 900;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* media qury------------------------------------ */
 
 @media screen and (max-width: 750px) {

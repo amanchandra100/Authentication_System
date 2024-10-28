@@ -8,9 +8,9 @@ const View = () => {
  
 
   useEffect(() => { 
-    const _id=process.env.REACT_APP_ID
+    const _id=process.env.REACT_APP_API_KEY
     const fetchCount = async () => {
-    const res = await fetch(`/api/v1/viewsCount/${_id}`)
+    const res = await fetch(`https://viewapi.vercel.app/api/v1/viewsCount/${_id}`)
     .then((res) => res.json());
     setViews(res.count);
     };
