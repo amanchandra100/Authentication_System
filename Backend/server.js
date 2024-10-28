@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, '../Frontend/client/build')));
 
 //routes
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/", viewsRoutes);
+
 
 //rest api
 app.get("*", (req, res) => {
