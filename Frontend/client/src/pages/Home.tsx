@@ -3,6 +3,8 @@ import { useAuth } from '../context/auth';
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from 'react-router-dom';
 import "../styles/home.css"
+// import ImageSlidingCard from '../components/ImageSlidingCard/ImageSlidingCard.tsx';
+import ImageSlider from "../components/ImageSlidingCard/ImageSlider.tsx";
 
 const Home = () => {
 
@@ -50,7 +52,16 @@ function decrease() {
 
   return (
     <>
+
     <h2>This is Demo Home Page Which is protected by Authentication means you can't access this page without login</h2>
+    <div className="App">
+      <h1>Image Slider</h1>
+      {/* <ImageSlider images={images} /> */}
+    </div>
+    {/* <div className="App">
+      <h1>Image Slider on Hover</h1>
+      <ImageSlidingCard images={images} />
+    </div> */}
 
     <div className="photo-div">
       <img className='imges' src={images[counter]} alt=""  />
